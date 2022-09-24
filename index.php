@@ -1,3 +1,11 @@
+<?php
+include 'config.php';
+
+session_start();
+
+error_reporting(0);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,22 +26,22 @@
             name="formSignIn"
             id="formSignIn"
             method="post"
-            action="profile.html"
+            action="login.php"
             class="sign-in-form"
           >
             <h2 class="title">Sign in</h2>
             <!-- sign in username-->
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" name="userName" placeholder="Username" />
+              <input type="text" name="userName" value="<?php echo $userName; ?>" placeholder="Username" required />
             </div>
             <!-- sign in password-->
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input type="password" name="userPass" value="<?php echo $_POST['userPass']; ?>" placeholder="Password" />
             </div>
             <!-- sign in button-->
-            <input type="submit" class="btn solid" value="Sign in" />
+            <input type="submit" name="login" class="btn solid" value="Sign in" />
             <p class="social-text">Or Sign in with social platforms</p>
             <div class="social-media">
               <a href="#" class="social-icon">
@@ -51,10 +59,9 @@
             </div>
           </form>
           <form
-            onsubmit="return validate()"
-            action="profile.html"
+            action="register.php"
             class="sign-up-form"
-            id="registration_form"
+            id="registrationForm"
             method="post"
           >
             <h2 class="title">Sign up</h2>
@@ -68,38 +75,39 @@
                 placeholder="Username"
               />
             </div>
-            <!--    <small class="error-text" >Error message!</small>-->
             <!-- sign up email-->
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" />
+              <input type="email" name="userEmail" placeholder="Email" />
             </div>
             <!-- sign up phone-->
             <div class="input-field">
               <i class="fas fa-phone"></i>
-              <input type="number" placeholder="Phone" />
+              <input type="number" name="userPhone" placeholder="Phone" />
             </div>
             <!-- sign up password-->
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input type="password" name="userPass" placeholder="Password" />
             </div>
             <!-- sign up address-->
             <div class="input-field">
               <i class="fas fa-house-user"></i>
-              <input type="text" placeholder="Address" />
+              <input type="text" name="userAddress" placeholder="Address" />
             </div>
             <!-- sign up profile image-->
             <div class="upload-image">
               <input
                 type="file"
                 class="upload-box"
-                accept="image/*"
+                accept="image"
+                name="userPhoto"
                 onchange="loadFile(event)"
+                placeholder="insert your Profile Picture"
               />
             </div>
             <!-- sign up button-->
-            <input type="submit" class="btn" value="Sign up" />
+            <input type="submit" name="submit" class="btn" value="Sign up" />
             <p class="social-text">Or Sign up with social platforms</p>
             <div class="social-media">
               <a href="#" class="social-icon">
@@ -144,15 +152,9 @@
       </div>
     </div>
 
-    <script
-      type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
-    ></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
-    <script type="text/javascript" src="Validator/validate.js"></script>
+    <script  src="Validator/validation.js"></script>
   </body>
 </html>
